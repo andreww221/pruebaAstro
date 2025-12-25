@@ -14,7 +14,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  site:"https:www.example.com",
+  site:"sprightly-narwhal-39aa72.netlify.app",
 
   integrations: [mdx()]
 });
