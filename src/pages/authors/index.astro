@@ -1,14 +1,14 @@
 ---
 import Mainlayout from "../layouts/Mainlayout.astro";
 
-import AuthorCard from "../components/AuthorCard.astro";
+import AuthorCard from "../../components/AuthorCard.astro";
 
 import { getCollection } from "astro:content";
 
 const authors = await getCollection("author");
 
 
-
+console.log(authors);
 
 
 ---
