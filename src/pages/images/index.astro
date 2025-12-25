@@ -1,0 +1,27 @@
+---
+import Image from "astro/components/Image.astro";
+
+import Mainlayout from "../layouts/Mainlayout.astro";
+
+import Image05Post from "../../assets/images/post-05.png"
+
+import Picture from "astro/components/Picture.astro";
+
+
+---
+
+
+
+<Mainlayout title="Images">
+    <h1>Images</h1>
+
+        <Picture 
+        src={Image05Post} alt="sadfsd"
+        widths={[240, 540, 720, 820, 999, Image05Post.width]}
+         sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${Image05Post.width}px`}
+         width="250"
+         height="250"
+        />
+
+
+</Mainlayout>

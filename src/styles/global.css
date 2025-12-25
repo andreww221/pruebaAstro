@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+
+html{
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply mt-10;
+
+}
+
+
+
+h2 {
+  @apply text-2xl text-blue-500 my-5;
+}
+
+
+
+a {
+  @apply text-blue-500 hover:underline;
+}

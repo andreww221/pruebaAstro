@@ -1,0 +1,21 @@
+---
+import Mainlayout from "../layouts/Mainlayout.astro";
+
+import AuthorCard from "../components/AuthorCard.astro";
+
+import { getCollection } from "astro:content";
+
+const authors = await getCollection("author");
+
+
+
+console.log(authors);
+
+
+---
+
+ <Mainlayout title="Authors">
+    <div class="bg-amber-500 grid grid-cols-2 justify-center p-20 gap-6">
+        {authors.map((author) => <AuthorCard author={author} />)}
+    </div>
+</Mainlayout> 

@@ -1,0 +1,56 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import PostLayout from "../layouts/PostLayout.astro";
+
+import { getCollection,getEntry } from "astro:content";
+
+import type { CollectionEntry } from "astro:content";
+
+import Image from "astro/components/Image.astro";
+
+interface Props {
+    post: CollectionEntry<"blog">;
+}
+
+export const getStaticPaths = (async () => {
+    const contentBlog = await getCollection("blog");
+    return [
+        ...contentBlog.map((post: Props) => ({
+            params: { slug: post.slug },
+            props: { post: post },
+        })),
+    ];
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+
+const { Content, headings } = await post.render();
+
+
+const author = await getEntry('author',post.data.author.id);
+
+
+---
+
+<PostLayout title={post.data.title}>
+    <h1>{post.data.title}</h1>
+    <div>
+        <h4>
+            <a href={`/blog/${post.data.author.id}`}>{author.data.name}</a>
+        </h4>
+        <Image class="w-20 rounded-xl mb-5 mt-5" src={author.data.avatar} alt="">
+    </div>
+
+    <ul>
+        {
+            headings.map((heading, index) => (
+                <li>
+                    <a href={`#${heading.slug}`}>{heading.slug}</a>
+                </li>
+            ))
+        }
+    </ul>
+
+    <Content />
+</PostLayout>

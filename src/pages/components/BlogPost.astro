@@ -1,0 +1,35 @@
+---
+
+import { Image } from "astro:assets";
+
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+
+console.log(post.data.image);
+---
+
+<div class="lg:flex">
+    <Image
+        class="object-cover w-full h-56 rounded-lg lg:w-64"
+        src={post.data.image}
+        alt={post.data.title}
+    />
+
+    <div class="flex flex-col justify-between py-6 lg:mx-6">
+        <a
+            href={`/postss/${post.slug}`}
+            class="text-xl font-semibold text-gray-800 hover:underline dark:text-white"
+        >
+            {post.data.description}
+        </a>
+
+        <span class="text-sm text-gray-500 dark:text-gray-300"
+            >{post.data.data}</span
+        >
+    </div>
+</div>
